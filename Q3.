@@ -1,0 +1,6 @@
+Q3. What does a SQL query do? Give a simple example.
+SQL query is a command used to retrieve, filter, or manage data stored in a
+database.
+Example : select * from customers (table name);
+Above command is used to show the details from the table stored in the form of
+rows and columns.
