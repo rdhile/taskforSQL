@@ -1,0 +1,3 @@
+Q15. Create a table for students: columns: Student_id, name, age, course, marks
+
+create table student1(Student_id int,name varchar(100),age int,course varchar(100),marks int);
