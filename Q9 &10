@@ -1,0 +1,24 @@
+Q9. Explain how an RDBMS uses tables, rows, and columns to organize data.
+An RDBMS (Relational Database Management System) organizes data into tables
+consisting of rows and columns, making it easy to store, retrieve, and manage
+information.
+
+
+Q10. Describe two advantages and two limitations of using an RDBMS.
+1. Advantages of RDBMS
+1. Data Accuracy and Integrity
+• RDBMS maintains accurate and consistent data using primary keys, foreign keys,
+and constraints.
+• It helps prevent duplicate records and invalid relationships.
+2. Data Security
+• RDBMS provides security features to protect sensitive information.
+• It allows administrators to control who can access, modify, or delete data.
+2. Limitations of RDBMS
+1. High Cost
+• Some RDBMS solutions require expensive software licenses, hardware, and
+maintenance.
+• Skilled database administrators may be needed.
+2. Complexity
+• Designing and managing relational databases can be complicated.
+• Large databases may require performance optimization and regular
+maintenance.
