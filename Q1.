@@ -1,0 +1,10 @@
+Q1.What is SQL, and what is it used for?
+SQL (Structured Query Language) is a programming language used to store,
+retrieve, manage, and manipulate data in relational databases.
+SQL is mainly used for:
+1. Retrieving data: Extract information from a database.
+2. Inserting data: Add new records.
+3. Updating data: Modify existing records.
+4. Deleting data: Remove unnecessary records.
+5. Filtering data: Find specific information.
+6. Analyzing data: Generate reports and identify trends.
