@@ -1,0 +1,136 @@
+Q22. Use the CITY table with columns ID, Name, CountryCode, District, and
+Population. Try these in a practice database.
+
+mysql> create table city(ID int,name varchar(100),countryCode varchar(100),District varchar(100),Population int);
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> insert into city values(101, 'Mumbai', 'IND', 'Maharashtra', 12442373),(102, 'Delhi', 'IND', 'Delhi', 11034555),(103, 'Bangalore', 'IND', 'Karnataka', 8443675),(104, 'Chennai', 'IND', 'Tamil Nadu', 4646732),(105, 'Pune', 'IND', 'Maharashtra', 3124458),(201, 'Tokyo', 'JPN', 'Tokyo-to', 8336599),(202, 'Osaka', 'JPN', 'Osaka', 2595674),(203, 'Kyoto', 'JPN', 'Kyoto', 1461974),(301, 'London', 'GBR', 'England', 8982000),(401, 'New York', 'USA', 'New York', 8008278),(402, 'Los Angeles', 'USA', 'California', 3694820);
+Query OK, 11 rows affected (0.01 sec)
+Records: 11  Duplicates: 0  Warnings: 0
+
+mysql> select * from city;
++------+-------------+-------------+-------------+------------+
+| ID   | name        | countryCode | District    | Population |
++------+-------------+-------------+-------------+------------+
+|  101 | Mumbai      | IND         | Maharashtra |   12442373 |
+|  102 | Delhi       | IND         | Delhi       |   11034555 |
+|  103 | Bangalore   | IND         | Karnataka   |    8443675 |
+|  104 | Chennai     | IND         | Tamil Nadu  |    4646732 |
+|  105 | Pune        | IND         | Maharashtra |    3124458 |
+|  201 | Tokyo       | JPN         | Tokyo-to    |    8336599 |
+|  202 | Osaka       | JPN         | Osaka       |    2595674 |
+|  203 | Kyoto       | JPN         | Kyoto       |    1461974 |
+|  301 | London      | GBR         | England     |    8982000 |
+|  401 | New York    | USA         | New York    |    8008278 |
+|  402 | Los Angeles | USA         | California  |    3694820 |
++------+-------------+-------------+-------------+------------+
+11 rows in set (0.00 sec)
+
+
+Q23. Show the names and populations of all cities in India (CountryCode = 'IND').
+
+mysql> select name,Population from city where countryCode = 'IND';
++-----------+------------+
+| name      | Population |
++-----------+------------+
+| Mumbai    |   12442373 |
+| Delhi     |   11034555 |
+| Bangalore |    8443675 |
+| Chennai   |    4646732 |
+| Pune      |    3124458 |
++-----------+------------+
+5 rows in set (0.00 sec)
+
+Q24. Show all columns for cities in Japan (CountryCode = 'JPN').
+
+mysql> select * from city where countryCode = 'JPN';
++------+-------+-------------+----------+------------+
+| ID   | name  | countryCode | District | Population |
++------+-------+-------------+----------+------------+
+|  201 | Tokyo | JPN         | Tokyo-to |    8336599 |
+|  202 | Osaka | JPN         | Osaka    |    2595674 |
+|  203 | Kyoto | JPN         | Kyoto    |    1461974 |
++------+-------+-------------+----------+------------+
+3 rows in set (0.00 sec)
+
+Q25. Show the names of cities with populations over 1,000,000, ordered from
+largest to smallest population.
+
+mysql> select name from city where Population >= 1000000 order by Population desc;
++-------------+
+| name        |
++-------------+
+| Mumbai      |
+| Delhi       |
+| London      |
+| Bangalore   |
+| Tokyo       |
+| New York    |
+| Chennai     |
+| Los Angeles |
+| Pune        |
+| Osaka       |
+| Kyoto       |
++-------------+
+11 rows in set (0.00 sec)
+
+Q26. Find all details for the city named London.
+
+mysql> select * from city where name = 'London';
++------+--------+-------------+----------+------------+
+| ID   | name   | countryCode | District | Population |
++------+--------+-------------+----------+------------+
+|  301 | London | GBR         | England  |    8982000 |
++------+--------+-------------+----------+------------+
+1 row in set (0.00 sec)
+
+Q27.Add a city with ID 999999, name Sampleville, country code USA, district Test
+State, and population 25000.
+
+mysql> insert into city values(999999,'Sampleville','USA','Test State',25000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from city;
++--------+-------------+-------------+-------------+------------+
+| ID     | name        | countryCode | District    | Population |
++--------+-------------+-------------+-------------+------------+
+|    101 | Mumbai      | IND         | Maharashtra |   12442373 |
+|    102 | Delhi       | IND         | Delhi       |   11034555 |
+|    103 | Bangalore   | IND         | Karnataka   |    8443675 |
+|    104 | Chennai     | IND         | Tamil Nadu  |    4646732 |
+|    105 | Pune        | IND         | Maharashtra |    3124458 |
+|    201 | Tokyo       | JPN         | Tokyo-to    |    8336599 |
+|    202 | Osaka       | JPN         | Osaka       |    2595674 |
+|    203 | Kyoto       | JPN         | Kyoto       |    1461974 |
+|    301 | London      | GBR         | England     |    8982000 |
+|    401 | New York    | USA         | New York    |    8008278 |
+|    402 | Los Angeles | USA         | California  |    3694820 |
+| 999999 | Sampleville | USA         | Test State  |      25000 |
++--------+-------------+-------------+-------------+------------+
+12 rows in set (0.00 sec)
+
+Q28. Add a city with ID 999998, name Tiny Town, country code IND, district Test
+District, and population 800.
+
+mysql> insert into city values(999998,'Tiny Town','IND','Test District',800);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from city;
++--------+-------------+-------------+---------------+------------+
+| ID     | name        | countryCode | District      | Population |
++--------+-------------+-------------+---------------+------------+
+|    101 | Mumbai      | IND         | Maharashtra   |   12442373 |
+|    102 | Delhi       | IND         | Delhi         |   11034555 |
+|    103 | Bangalore   | IND         | Karnataka     |    8443675 |
+|    104 | Chennai     | IND         | Tamil Nadu    |    4646732 |
+|    105 | Pune        | IND         | Maharashtra   |    3124458 |
+|    201 | Tokyo       | JPN         | Tokyo-to      |    8336599 |
+|    202 | Osaka       | JPN         | Osaka         |    2595674 |
+|    203 | Kyoto       | JPN         | Kyoto         |    1461974 |
+|    301 | London      | GBR         | England       |    8982000 |
+|    401 | New York    | USA         | New York      |    8008278 |
+|    402 | Los Angeles | USA         | California    |    3694820 |
+| 999999 | Sampleville | USA         | Test State    |      25000 |
+| 999998 | Tiny Town   | IND         | Test District |        800 |
++--------+-------------+-------------+---------------+------------+
+13 rows in set (0.00 sec)
