@@ -1,0 +1,14 @@
+Q5. Write a SQL query to display the current date (use the syntax supported by your
+SQL database).
+SELECT CURRENT_DATE; 
+
+
+mysql> use student1;
+Database changed
+mysql> SELECT CURRENT_DATE;
++--------------+
+| CURRENT_DATE |
++--------------+
+| 2026-11-25   |
++--------------+
+1 row in set (0.00 sec)
