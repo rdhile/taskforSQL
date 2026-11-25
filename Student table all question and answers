@@ -1,0 +1,105 @@
+Q16. ○ Display every column for every student.
+
+mysql> insert into student1 values(11,'Radhika',16,'Python',85),(12,'Swati',17,'Python',70),(13,'Raji',19,'Data Science',80),(14,'Sai',20,'SQL',90);
+Query OK, 4 rows affected (0.02 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from student1;
++------------+---------+------+--------------+-------+
+| Student_id | name    | age  | course       | marks |
++------------+---------+------+--------------+-------+
+|         11 | Radhika |   16 | Python       |    85 |
+|         12 | Swati   |   17 | Python       |    70 |
+|         13 | Raji    |   19 | Data Science |    80 |
+|         14 | Sai     |   20 | SQL          |    90 |
++------------+---------+------+--------------+-------+
+4 rows in set (0.00 sec)
+
+Q17. Display only each student’s name and course.
+
+
+mysql> SELECT name,course from student1;
++---------+--------------+
+| name    | course       |
++---------+--------------+
+| Radhika | Python       |
+| Swati   | Python       |
+| Raji    | Data Science |
+| Sai     | SQL          |
++---------+--------------+
+4 rows in set (0.00 sec)
+
+Q18. Find students who are 18 or older.
+
+mysql> Select * from student1 where age >= 18;
++------------+------+------+--------------+-------+
+| Student_id | name | age  | course       | marks |
++------------+------+------+--------------+-------+
+|         13 | Raji |   19 | Data Science |    80 |
+|         14 | Sai  |   20 | SQL          |    90 |
++------------+------+------+--------------+-------+
+2 rows in set (0.01 sec)
+
+Q19.Display students with marks of 80 or more, ordered from highest marks to
+lowest.
+
+mysql> Select * from student1 where marks >= 80 order by marks desc;
++------------+---------+------+--------------+-------+
+| Student_id | name    | age  | course       | marks |
++------------+---------+------+--------------+-------+
+|         14 | Sai     |   20 | SQL          |    90 |
+|         11 | Radhika |   16 | Python       |    85 |
+|         13 | Raji    |   19 | Data Science |    80 |
++------------+---------+------+--------------+-------+
+3 rows in set (0.00 sec)
+
+Q20. Add a student: ID 106, name Arun, age 19, course Physics, marks 81.
+mysql> insert into student1 values(106,'Arun',19,'Physics',81);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from student1;
++------------+---------+------+--------------+-------+
+| Student_id | name    | age  | course       | marks |
++------------+---------+------+--------------+-------+
+|         11 | Radhika |   16 | Python       |    85 |
+|         12 | Swati   |   17 | Python       |    70 |
+|         13 | Raji    |   19 | Data Science |    80 |
+|         14 | Sai     |   20 | SQL          |    90 |
+|        106 | Arun    |   19 | Physics      |    81 |
++------------+---------+------+--------------+-------+
+5 rows in set (0.00 sec)
+
+Q21. Add another student with your own values for all five columns.
+
+mysql> insert into student1 values(107,'Ajit',20,'Maths',92);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from student1;
++------------+---------+------+--------------+-------+
+| Student_id | name    | age  | course       | marks |
++------------+---------+------+--------------+-------+
+|         11 | Radhika |   16 | Python       |    85 |
+|         12 | Swati   |   17 | Python       |    70 |
+|         13 | Raji    |   19 | Data Science |    80 |
+|         14 | Sai     |   20 | SQL          |    90 |
+|        106 | Arun    |   19 | Physics      |    81 |
+|        107 | Ajit    |   20 | Maths        |    92 |
++------------+---------+------+--------------+-------+
+6 rows in set (0.00 sec)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
