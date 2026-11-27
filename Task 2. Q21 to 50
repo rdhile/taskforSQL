@@ -1,0 +1,514 @@
+21.Display all records from the city table.
+mysql> select * from city;
++--------+-------------+-------------+-------------+------------+
+| ID     | name        | countryCode | District    | Population |
++--------+-------------+-------------+-------------+------------+
+|    101 | Mumbai      | IND         | Maharashtra |   12442373 |
+|    102 | Delhi       | IND         | Delhi       |   11034555 |
+|    103 | Bangalore   | IND         | Karnataka   |    8443675 |
+|    104 | Chennai     | IND         | Tamil Nadu  |    4646732 |
+|    105 | Pune        | IND         | Maharashtra |    3124458 |
+|    201 | Tokyo       | JPN         | Tokyo-to    |    8336599 |
+|    202 | Osaka       | JPN         | Osaka       |    2595674 |
+|    203 | Kyoto       | JPN         | Kyoto       |    1461974 |
+|    301 | London      | GBR         | England     |    8982000 |
+|    401 | New York    | USA         | New York    |    8008278 |
+|    402 | Los Angeles | USA         | California  |    3694820 |
+| 999999 | Sampleville | USA         | Test State  |      25000 |
+|    106 | Nagpur      | IND         | Maharashtra |    2405665 |
+|    107 | Hyderabad   | IND         | Telangana   |    6809970 |
+|    108 | Surat       | IND         | Gujarat     |    4467797 |
+|    204 | Yokohama    | JPN         | Kanagawa    |    3777491 |
+|    403 | Chicago     | USA         | Illinois    |    2746388 |
+|    302 | Manchester  | GBR         | England     |     552000 |
+|    303 | Indore      | IND         | Maharashtra |       NULL |
++--------+-------------+-------------+-------------+------------+
+19 rows in set (0.00 sec)
+
+22.Display only the names and populations of all cities.
+mysql> select name,Population from city;
++-------------+------------+
+| name        | Population |
++-------------+------------+
+| Mumbai      |   12442373 |
+| Delhi       |   11034555 |
+| Bangalore   |    8443675 |
+| Chennai     |    4646732 |
+| Pune        |    3124458 |
+| Tokyo       |    8336599 |
+| Osaka       |    2595674 |
+| Kyoto       |    1461974 |
+| London      |    8982000 |
+| New York    |    8008278 |
+| Los Angeles |    3694820 |
+| Sampleville |      25000 |
+| Nagpur      |    2405665 |
+| Hyderabad   |    6809970 |
+| Surat       |    4467797 |
+| Yokohama    |    3777491 |
+| Chicago     |    2746388 |
+| Manchester  |     552000 |
+| Indore      |       NULL |
++-------------+------------+
+19 rows in set (0.00 sec)
+
+23.Display all cities belonging to India.
+
+mysql> select name from city where countryCode = 'IND';
++-----------+
+| name      |
++-----------+
+| Mumbai    |
+| Delhi     |
+| Bangalore |
+| Chennai   |
+| Pune      |
+| Nagpur    |
+| Hyderabad |
+| Surat     |
+| Indore    |
++-----------+
+9 rows in set (0.00 sec)
+
+24.Display cities having a population greater than 5000000.
+
+mysql> select * from city where Population > 5000000;
++------+-----------+-------------+-------------+------------+
+| ID   | name      | countryCode | District    | Population |
++------+-----------+-------------+-------------+------------+
+|  101 | Mumbai    | IND         | Maharashtra |   12442373 |
+|  102 | Delhi     | IND         | Delhi       |   11034555 |
+|  103 | Bangalore | IND         | Karnataka   |    8443675 |
+|  201 | Tokyo     | JPN         | Tokyo-to    |    8336599 |
+|  301 | London    | GBR         | England     |    8982000 |
+|  401 | New York  | USA         | New York    |    8008278 |
+|  107 | Hyderabad | IND         | Telangana   |    6809970 |
++------+-----------+-------------+-------------+------------+
+7 rows in set (0.00 sec)
+
+25.Display cities having a population less than or equal to 3000000.
+mysql> select * from city where Population <= 3000000;
++--------+-------------+-------------+-------------+------------+
+| ID     | name        | countryCode | District    | Population |
++--------+-------------+-------------+-------------+------------+
+|    202 | Osaka       | JPN         | Osaka       |    2595674 |
+|    203 | Kyoto       | JPN         | Kyoto       |    1461974 |
+| 999999 | Sampleville | USA         | Test State  |      25000 |
+|    106 | Nagpur      | IND         | Maharashtra |    2405665 |
+|    403 | Chicago     | USA         | Illinois    |    2746388 |
+|    302 | Manchester  | GBR         | England     |     552000 |
++--------+-------------+-------------+-------------+------------+
+6 rows in set (0.00 sec)
+
+26.Display all cities belonging to Maharashtra.
+mysql> select * from city where District = 'Maharashtra';
++------+--------+-------------+-------------+------------+
+| ID   | name   | countryCode | District    | Population |
++------+--------+-------------+-------------+------------+
+|  101 | Mumbai | IND         | Maharashtra |   12442373 |
+|  105 | Pune   | IND         | Maharashtra |    3124458 |
+|  106 | Nagpur | IND         | Maharashtra |    2405665 |
+|  303 | Indore | IND         | Maharashtra |       NULL |
++------+--------+-------------+-------------+------------+
+4 rows in set (0.00 sec)
+
+27.Display Indian cities having a population greater than 5000000.
+
+mysql> select * from city where Population > 5000000 AND countryCode = 'IND';
++------+-----------+-------------+-------------+------------+
+| ID   | name      | countryCode | District    | Population |
++------+-----------+-------------+-------------+------------+
+|  101 | Mumbai    | IND         | Maharashtra |   12442373 |
+|  102 | Delhi     | IND         | Delhi       |   11034555 |
+|  103 | Bangalore | IND         | Karnataka   |    8443675 |
+|  107 | Hyderabad | IND         | Telangana   |    6809970 |
++------+-----------+-------------+-------------+------------+
+4 rows in set (0.00 sec)
+
+28.Display cities belonging to either Japan or the USA.
+
+mysql> select * from city where countryCode = 'JPN' or 'USA';
++------+----------+-------------+----------+------------+
+| ID   | name     | countryCode | District | Population |
++------+----------+-------------+----------+------------+
+|  201 | Tokyo    | JPN         | Tokyo-to |    8336599 |
+|  202 | Osaka    | JPN         | Osaka    |    2595674 |
+|  203 | Kyoto    | JPN         | Kyoto    |    1461974 |
+|  204 | Yokohama | JPN         | Kanagawa |    3777491 |
++------+----------+-------------+----------+------------+
+4 rows in set, 1 warning (0.00 sec)
+
+29.Display all cities except those belonging to India.
+
+mysql> select * from city where countryCode != 'IND';
++--------+-------------+-------------+------------+------------+
+| ID     | name        | countryCode | District   | Population |
++--------+-------------+-------------+------------+------------+
+|    201 | Tokyo       | JPN         | Tokyo-to   |    8336599 |
+|    202 | Osaka       | JPN         | Osaka      |    2595674 |
+|    203 | Kyoto       | JPN         | Kyoto      |    1461974 |
+|    301 | London      | GBR         | England    |    8982000 |
+|    401 | New York    | USA         | New York   |    8008278 |
+|    402 | Los Angeles | USA         | California |    3694820 |
+| 999999 | Sampleville | USA         | Test State |      25000 |
+|    204 | Yokohama    | JPN         | Kanagawa   |    3777491 |
+|    403 | Chicago     | USA         | Illinois   |    2746388 |
+|    302 | Manchester  | GBR         | England    |     552000 |
++--------+-------------+-------------+------------+------------+
+10 rows in set (0.00 sec)
+
+30.Display cities having a population between 3000000 and 9000000.
+
+mysql> select * from city where Population between 3000000 and 9000000;
++------+-------------+-------------+-------------+------------+
+| ID   | name        | countryCode | District    | Population |
++------+-------------+-------------+-------------+------------+
+|  103 | Bangalore   | IND         | Karnataka   |    8443675 |
+|  104 | Chennai     | IND         | Tamil Nadu  |    4646732 |
+|  105 | Pune        | IND         | Maharashtra |    3124458 |
+|  201 | Tokyo       | JPN         | Tokyo-to    |    8336599 |
+|  301 | London      | GBR         | England     |    8982000 |
+|  401 | New York    | USA         | New York    |    8008278 |
+|  402 | Los Angeles | USA         | California  |    3694820 |
+|  107 | Hyderabad   | IND         | Telangana   |    6809970 |
+|  108 | Surat       | IND         | Gujarat     |    4467797 |
+|  204 | Yokohama    | JPN         | Kanagawa    |    3777491 |
++------+-------------+-------------+-------------+------------+
+10 rows in set (0.00 sec)
+
+31.Display cities whose names start with the letter 'M'.
+mysql> select * from city where name like 'M%';
++------+------------+-------------+-------------+------------+
+| ID   | name       | countryCode | District    | Population |
++------+------------+-------------+-------------+------------+
+|  101 | Mumbai     | IND         | Maharashtra |   12442373 |
+|  302 | Manchester | GBR         | England     |     552000 |
++------+------------+-------------+-------------+------------+
+2 rows in set (0.01 sec)
+
+32.Display cities whose names end with the letter 'i'.
+mysql> select * from city where name like '%I';
++------+---------+-------------+-------------+------------+
+| ID   | name    | countryCode | District    | Population |
++------+---------+-------------+-------------+------------+
+|  101 | Mumbai  | IND         | Maharashtra |   12442373 |
+|  102 | Delhi   | IND         | Delhi       |   11034555 |
+|  104 | Chennai | IND         | Tamil Nadu  |    4646732 |
++------+---------+-------------+-------------+------------+
+3 rows in set (0.00 sec)
+
+33.Display cities whose names contain the letter 'o'.
+
+mysql> select * from city where name like '%O%';
++------+-------------+-------------+-------------+------------+
+| ID   | name        | countryCode | District    | Population |
++------+-------------+-------------+-------------+------------+
+|  103 | Bangalore   | IND         | Karnataka   |    8443675 |
+|  201 | Tokyo       | JPN         | Tokyo-to    |    8336599 |
+|  202 | Osaka       | JPN         | Osaka       |    2595674 |
+|  203 | Kyoto       | JPN         | Kyoto       |    1461974 |
+|  301 | London      | GBR         | England     |    8982000 |
+|  401 | New York    | USA         | New York    |    8008278 |
+|  402 | Los Angeles | USA         | California  |    3694820 |
+|  204 | Yokohama    | JPN         | Kanagawa    |    3777491 |
+|  403 | Chicago     | USA         | Illinois    |    2746388 |
+|  303 | Indore      | IND         | Maharashtra |       NULL |
++------+-------------+-------------+-------------+------------+
+10 rows in set (0.00 sec)
+
+34.Display all unique country codes.
+
+mysql> select distinct countryCode from city;
++-------------+
+| countryCode |
++-------------+
+| IND         |
+| JPN         |
+| GBR         |
+| USA         |
++-------------+
+4 rows in set (0.00 sec)
+
+35.Display all cities in ascending order of population.
+
+mysql> select * from city order by Population;
++--------+-------------+-------------+-------------+------------+
+| ID     | name        | countryCode | District    | Population |
++--------+-------------+-------------+-------------+------------+
+|    303 | Indore      | IND         | Maharashtra |       NULL |
+| 999999 | Sampleville | USA         | Test State  |      25000 |
+|    302 | Manchester  | GBR         | England     |     552000 |
+|    203 | Kyoto       | JPN         | Kyoto       |    1461974 |
+|    106 | Nagpur      | IND         | Maharashtra |    2405665 |
+|    202 | Osaka       | JPN         | Osaka       |    2595674 |
+|    403 | Chicago     | USA         | Illinois    |    2746388 |
+|    105 | Pune        | IND         | Maharashtra |    3124458 |
+|    402 | Los Angeles | USA         | California  |    3694820 |
+|    204 | Yokohama    | JPN         | Kanagawa    |    3777491 |
+|    108 | Surat       | IND         | Gujarat     |    4467797 |
+|    104 | Chennai     | IND         | Tamil Nadu  |    4646732 |
+|    107 | Hyderabad   | IND         | Telangana   |    6809970 |
+|    401 | New York    | USA         | New York    |    8008278 |
+|    201 | Tokyo       | JPN         | Tokyo-to    |    8336599 |
+|    103 | Bangalore   | IND         | Karnataka   |    8443675 |
+|    301 | London      | GBR         | England     |    8982000 |
+|    102 | Delhi       | IND         | Delhi       |   11034555 |
+|    101 | Mumbai      | IND         | Maharashtra |   12442373 |
++--------+-------------+-------------+-------------+------------+
+19 rows in set (0.00 sec)
+
+36.Display the top three most populated cities.
+
+mysql> select * from city order by Population desc limit 3;
++------+--------+-------------+-------------+------------+
+| ID   | name   | countryCode | District    | Population |
++------+--------+-------------+-------------+------------+
+|  101 | Mumbai | IND         | Maharashtra |   12442373 |
+|  102 | Delhi  | IND         | Delhi       |   11034555 |
+|  301 | London | GBR         | England     |    8982000 |
++------+--------+-------------+-------------+------------+
+3 rows in set (0.00 sec)
+
+37.Display the five least populated cities.
+mysql> select * from city order by Population asc limit 5;
++--------+-------------+-------------+-------------+------------+
+| ID     | name        | countryCode | District    | Population |
++--------+-------------+-------------+-------------+------------+
+|    303 | Indore      | IND         | Maharashtra |       NULL |
+| 999999 | Sampleville | USA         | Test State  |      25000 |
+|    302 | Manchester  | GBR         | England     |     552000 |
+|    203 | Kyoto       | JPN         | Kyoto       |    1461974 |
+|    106 | Nagpur      | IND         | Maharashtra |    2405665 |
++--------+-------------+-------------+-------------+------------+
+5 rows in set (0.00 sec)
+
+38.Display city names in alphabetical order.
+
+mysql> select * from city order by name;
++--------+-------------+-------------+-------------+------------+
+| ID     | name        | countryCode | District    | Population |
++--------+-------------+-------------+-------------+------------+
+|    103 | Bangalore   | IND         | Karnataka   |    8443675 |
+|    104 | Chennai     | IND         | Tamil Nadu  |    4646732 |
+|    403 | Chicago     | USA         | Illinois    |    2746388 |
+|    102 | Delhi       | IND         | Delhi       |   11034555 |
+|    107 | Hyderabad   | IND         | Telangana   |    6809970 |
+|    303 | Indore      | IND         | Maharashtra |       NULL |
+|    203 | Kyoto       | JPN         | Kyoto       |    1461974 |
+|    301 | London      | GBR         | England     |    8982000 |
+|    402 | Los Angeles | USA         | California  |    3694820 |
+|    302 | Manchester  | GBR         | England     |     552000 |
+|    101 | Mumbai      | IND         | Maharashtra |   12442373 |
+|    106 | Nagpur      | IND         | Maharashtra |    2405665 |
+|    401 | New York    | USA         | New York    |    8008278 |
+|    202 | Osaka       | JPN         | Osaka       |    2595674 |
+|    105 | Pune        | IND         | Maharashtra |    3124458 |
+| 999999 | Sampleville | USA         | Test State  |      25000 |
+|    108 | Surat       | IND         | Gujarat     |    4467797 |
+|    201 | Tokyo       | JPN         | Tokyo-to    |    8336599 |
+|    204 | Yokohama    | JPN         | Kanagawa    |    3777491 |
++--------+-------------+-------------+-------------+------------+
+19 rows in set (0.01 sec)
+
+39.Add a new column named Area with the FLOAT data type.
+
+mysql> alter table city add Area Float;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+40.Add a new column named Language with the VARCHAR(50) data type.
+
+mysql> alter table city add Language varchar(50);
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+41.Change the data type of the Population column to BIGINT.
+
+mysql> alter table city modify column Population bigint;
+Query OK, 19 rows affected (0.06 sec)
+Records: 19  Duplicates: 0  Warnings: 0
+
+42.Change the size of the name column to VARCHAR(100).
+
+mysql> ALTER TABLE city MODIFY COLUMN Name VARCHAR(100);
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+43.Rename the column name to City_Name.
+
+mysql> alter table city rename column name to city_Name;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from city;
++--------+-------------+-------------+-------------+------------+------+----------+
+| ID     | city_Name   | countryCode | District    | Population | Area | Language |
++--------+-------------+-------------+-------------+------------+------+----------+
+|    101 | Mumbai      | IND         | Maharashtra |   12442373 | NULL | NULL     |
+|    102 | Delhi       | IND         | Delhi       |   11034555 | NULL | NULL     |
+|    103 | Bangalore   | IND         | Karnataka   |    8443675 | NULL | NULL     |
+|    104 | Chennai     | IND         | Tamil Nadu  |    4646732 | NULL | NULL     |
+|    105 | Pune        | IND         | Maharashtra |    3124458 | NULL | NULL     |
+|    201 | Tokyo       | JPN         | Tokyo-to    |    8336599 | NULL | NULL     |
+|    202 | Osaka       | JPN         | Osaka       |    2595674 | NULL | NULL     |
+|    203 | Kyoto       | JPN         | Kyoto       |    1461974 | NULL | NULL     |
+|    301 | London      | GBR         | England     |    8982000 | NULL | NULL     |
+|    401 | New York    | USA         | New York    |    8008278 | NULL | NULL     |
+|    402 | Los Angeles | USA         | California  |    3694820 | NULL | NULL     |
+| 999999 | Sampleville | USA         | Test State  |      25000 | NULL | NULL     |
+|    106 | Nagpur      | IND         | Maharashtra |    2405665 | NULL | NULL     |
+|    107 | Hyderabad   | IND         | Telangana   |    6809970 | NULL | NULL     |
+|    108 | Surat       | IND         | Gujarat     |    4467797 | NULL | NULL     |
+|    204 | Yokohama    | JPN         | Kanagawa    |    3777491 | NULL | NULL     |
+|    403 | Chicago     | USA         | Illinois    |    2746388 | NULL | NULL     |
+|    302 | Manchester  | GBR         | England     |     552000 | NULL | NULL     |
+|    303 | Indore      | IND         | Maharashtra |       NULL | NULL | NULL     |
++--------+-------------+-------------+-------------+------------+------+----------+
+19 rows in set (0.00 sec)
+
+44.Set the default value of the Population column to 0.
+
+mysql> ALTER TABLE city ALTER Population SET DEFAULT 0;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from city;
++--------+-------------+-------------+-------------+------------+------+----------+
+| ID     | city_Name   | countryCode | District    | Population | Area | Language |
++--------+-------------+-------------+-------------+------------+------+----------+
+|    101 | Mumbai      | IND         | Maharashtra |   12442373 | NULL | NULL     |
+|    102 | Delhi       | IND         | Delhi       |   11034555 | NULL | NULL     |
+|    103 | Bangalore   | IND         | Karnataka   |    8443675 | NULL | NULL     |
+|    104 | Chennai     | IND         | Tamil Nadu  |    4646732 | NULL | NULL     |
+|    105 | Pune        | IND         | Maharashtra |    3124458 | NULL | NULL     |
+|    201 | Tokyo       | JPN         | Tokyo-to    |    8336599 | NULL | NULL     |
+|    202 | Osaka       | JPN         | Osaka       |    2595674 | NULL | NULL     |
+|    203 | Kyoto       | JPN         | Kyoto       |    1461974 | NULL | NULL     |
+|    301 | London      | GBR         | England     |    8982000 | NULL | NULL     |
+|    401 | New York    | USA         | New York    |    8008278 | NULL | NULL     |
+|    402 | Los Angeles | USA         | California  |    3694820 | NULL | NULL     |
+| 999999 | Sampleville | USA         | Test State  |      25000 | NULL | NULL     |
+|    106 | Nagpur      | IND         | Maharashtra |    2405665 | NULL | NULL     |
+|    107 | Hyderabad   | IND         | Telangana   |    6809970 | NULL | NULL     |
+|    108 | Surat       | IND         | Gujarat     |    4467797 | NULL | NULL     |
+|    204 | Yokohama    | JPN         | Kanagawa    |    3777491 | NULL | NULL     |
+|    403 | Chicago     | USA         | Illinois    |    2746388 | NULL | NULL     |
+|    302 | Manchester  | GBR         | England     |     552000 | NULL | NULL     |
+|    303 | Indore      | IND         | Maharashtra |       NULL | NULL | NULL     |
++--------+-------------+-------------+-------------+------------+------+----------+
+19 rows in set (0.00 sec)
+
+45.Remove the Language column from the table.
+
+mysql> ALTER TABLE city DROP COLUMN Language;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from city;
++--------+-------------+-------------+-------------+------------+------+
+| ID     | city_Name   | countryCode | District    | Population | Area |
++--------+-------------+-------------+-------------+------------+------+
+|    101 | Mumbai      | IND         | Maharashtra |   12442373 | NULL |
+|    102 | Delhi       | IND         | Delhi       |   11034555 | NULL |
+|    103 | Bangalore   | IND         | Karnataka   |    8443675 | NULL |
+|    104 | Chennai     | IND         | Tamil Nadu  |    4646732 | NULL |
+|    105 | Pune        | IND         | Maharashtra |    3124458 | NULL |
+|    201 | Tokyo       | JPN         | Tokyo-to    |    8336599 | NULL |
+|    202 | Osaka       | JPN         | Osaka       |    2595674 | NULL |
+|    203 | Kyoto       | JPN         | Kyoto       |    1461974 | NULL |
+|    301 | London      | GBR         | England     |    8982000 | NULL |
+|    401 | New York    | USA         | New York    |    8008278 | NULL |
+|    402 | Los Angeles | USA         | California  |    3694820 | NULL |
+| 999999 | Sampleville | USA         | Test State  |      25000 | NULL |
+|    106 | Nagpur      | IND         | Maharashtra |    2405665 | NULL |
+|    107 | Hyderabad   | IND         | Telangana   |    6809970 | NULL |
+|    108 | Surat       | IND         | Gujarat     |    4467797 | NULL |
+|    204 | Yokohama    | JPN         | Kanagawa    |    3777491 | NULL |
+|    403 | Chicago     | USA         | Illinois    |    2746388 | NULL |
+|    302 | Manchester  | GBR         | England     |     552000 | NULL |
+|    303 | Indore      | IND         | Maharashtra |       NULL | NULL |
++--------+-------------+-------------+-------------+------------+------+
+19 rows in set (0.00 sec)
+
+46.Rename the table from city to city_details.
+
+mysql> ALTER TABLE city RENAME TO city_details;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> select * from city_details;
++--------+-------------+-------------+-------------+------------+------+
+| ID     | city_Name   | countryCode | District    | Population | Area |
++--------+-------------+-------------+-------------+------------+------+
+|    101 | Mumbai      | IND         | Maharashtra |   12442373 | NULL |
+|    102 | Delhi       | IND         | Delhi       |   11034555 | NULL |
+|    103 | Bangalore   | IND         | Karnataka   |    8443675 | NULL |
+|    104 | Chennai     | IND         | Tamil Nadu  |    4646732 | NULL |
+|    105 | Pune        | IND         | Maharashtra |    3124458 | NULL |
+|    201 | Tokyo       | JPN         | Tokyo-to    |    8336599 | NULL |
+|    202 | Osaka       | JPN         | Osaka       |    2595674 | NULL |
+|    203 | Kyoto       | JPN         | Kyoto       |    1461974 | NULL |
+|    301 | London      | GBR         | England     |    8982000 | NULL |
+|    401 | New York    | USA         | New York    |    8008278 | NULL |
+|    402 | Los Angeles | USA         | California  |    3694820 | NULL |
+| 999999 | Sampleville | USA         | Test State  |      25000 | NULL |
+|    106 | Nagpur      | IND         | Maharashtra |    2405665 | NULL |
+|    107 | Hyderabad   | IND         | Telangana   |    6809970 | NULL |
+|    108 | Surat       | IND         | Gujarat     |    4467797 | NULL |
+|    204 | Yokohama    | JPN         | Kanagawa    |    3777491 | NULL |
+|    403 | Chicago     | USA         | Illinois    |    2746388 | NULL |
+|    302 | Manchester  | GBR         | England     |     552000 | NULL |
+|    303 | Indore      | IND         | Maharashtra |       NULL | NULL |
++--------+-------------+-------------+-------------+------------+------+
+19 rows in set (0.00 sec)
+
+47.Remove all records from the city table using TRUNCATE without deleting its structure.
+
+mysql> TRUNCATE TABLE city_details;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> select * from city_details;
+Empty set (0.00 sec)
+
+48.Truncate the city table, verify its structure using DESC and insert two new city records.
+
+mysql> desc city_details;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| ID          | int          | YES  |     | NULL    |       |
+| city_Name   | varchar(100) | YES  |     | NULL    |       |
+| countryCode | varchar(100) | YES  |     | NULL    |       |
+| District    | varchar(100) | YES  |     | NULL    |       |
+| Population  | bigint       | YES  |     | 0       |       |
+| Area        | float        | YES  |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> insert into city_details values(101, 'Khajuroa', 'IND', 'Maharashtra', 500000,10.5),(102,'Chennai','IND','Tamil Nadu',600000,45.7);
+Query OK, 2 rows affected (0.01 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from city_details;
++------+-----------+-------------+-------------+------------+------+
+| ID   | city_Name | countryCode | District    | Population | Area |
++------+-----------+-------------+-------------+------------+------+
+|  101 | Khajuroa  | IND         | Maharashtra |     500000 | 10.5 |
+|  102 | Chennai   | IND         | Tamil Nadu  |     600000 | 45.7 |
++------+-----------+-------------+-------------+------------+------+
+2 rows in set (0.00 sec)
+
+49.Write an SQL query to permanently delete the city table along with its structure and records.
+
+mysql> drop table city_details;
+Query OK, 0 rows affected (0.03 sec)
+
+50.Drop a table named city_backup only if it exists.
+
+mysql> DROP TABLE IF EXISTS city;
+Query OK, 0 rows affected, 1 warning (0.01 sec)
+
+
+
+
+
+
