@@ -1,0 +1,400 @@
+1.Insert a new city with the following details: (106, 'Nagpur', 'IND', 'Maharashtra', 2405665).
+mysql> insert into city values(106, 'Nagpur', 'IND', 'Maharashtra', 2405665);
+Query OK, 1 row affected (0.02 sec)
+
+2.Insert Hyderabad with ID 107, country code IND, district Telangana and population 6809970.
+insert into city values(107, 'Hyderabad', 'IND', 'Telangana', 6809970);
+Query OK, 1 row affected (0.01 sec)
+
+3.Insert three records using a single INSERT statement: (108, 'Surat', 'IND', 'Gujarat', 4467797); (204, 'Yokohama', 'JPN', 'Kanagawa', 3777491); (403, 'Chicago', 'USA', 'Illinois', 2746388).
+mysql> insert into city values(108, 'Surat', 'IND', 'Gujarat', 4467797),(204, 'Yokohama', 'JPN', 'Kanagawa', 3777491),(403, 'Chicago', 'USA', 'Illinois', 2746388);
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+4.Insert Manchester with ID 302, country code GBR, district England and population 552000 by explicitly specifying column names.
+mysql> insert into city values(302, 'Manchester', 'GBR', 'England', 552000);
+Query OK, 1 row affected (0.01 sec)
+
+5.Insert a new city without specifying its population, assuming the column accepts NULL values.
+mysql> insert into city values(303, 'Indore', 'IND', 'Maharashtra', NULL);
+Query OK, 1 row affected (0.00 sec)
+
+6.Update the population of Mumbai to 13000000.
+
+mysql> update city set Population = 13000000 where name = 'Mumbai';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from city;
++--------+-------------+-------------+---------------+------------+
+| ID     | name        | countryCode | District      | Population |
++--------+-------------+-------------+---------------+------------+
+|    101 | Mumbai      | IND         | Maharashtra   |   13000000 |
+|    102 | Delhi       | IND         | Delhi         |   11034555 |
+|    103 | Bangalore   | IND         | Karnataka     |    8443675 |
+|    104 | Chennai     | IND         | Tamil Nadu    |    4646732 |
+|    105 | Pune        | IND         | Maharashtra   |    3124458 |
+|    201 | Tokyo       | JPN         | Tokyo-to      |    8336599 |
+|    202 | Osaka       | JPN         | Osaka         |    2595674 |
+
+7.Change the name of Bangalore to Bengaluru.
+
+mysql> update city set name = 'Bengaluru' where name = 'Bangalore';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from city;
++--------+-------------+-------------+---------------+------------+
+| ID     | name        | countryCode | District      | Population |
++--------+-------------+-------------+---------------+------------+
+|    101 | Mumbai      | IND         | Maharashtra   |   13000000 |
+|    102 | Delhi       | IND         | Delhi         |   11034555 |
+|    103 | Bengaluru   | IND         | Karnataka     |    8443675 |
+|    104 | Chennai     | IND         | Tamil Nadu    |    4646732 |
+|    105 | Pune        | IND         | Maharashtra   |    3124458 |
+
+8.Update the population of Pune to 3500000 using its ID.
+mysql> update city set Population = 3500000 where ID = 105;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from city;
++--------+-------------+-------------+---------------+------------+
+| ID     | name        | countryCode | District      | Population |
++--------+-------------+-------------+---------------+------------+
+|    101 | Mumbai      | IND         | Maharashtra   |   13000000 |
+|    102 | Delhi       | IND         | Delhi         |   11034555 |
+|    103 | Bengaluru   | IND         | Karnataka     |    8443675 |
+|    104 | Chennai     | IND         | Tamil Nadu    |    4646732 |
+|    105 | Pune        | IND         | Maharashtra   |    3500000 |
+|    201 | Tokyo       | JPN         | Tokyo-to      |    8336599 |
+
+9.Increase the population of all Indian cities by 100000.
+
+mysql> update city set Population = Population + 100000 where countryCode = 'IND';
+Query OK, 10 rows affected (0.01 sec)
+Rows matched: 11  Changed: 10  Warnings: 0
+
+mysql> select * from city;
++--------+-------------+-------------+---------------+------------+
+| ID     | name        | countryCode | District      | Population |
++--------+-------------+-------------+---------------+------------+
+|    101 | Mumbai      | IND         | Maharashtra   |   13100000 |
+|    102 | Delhi       | IND         | Delhi         |   11134555 |
+|    103 | Bengaluru   | IND         | Karnataka     |    8543675 |
+|    104 | Chennai     | IND         | Tamil Nadu    |    4746732 |
+|    105 | Pune        | IND         | Maharashtra   |    3600000 |
+|    201 | Tokyo       | JPN         | Tokyo-to      |    8336599 |
+|    202 | Osaka       | JPN         | Osaka         |    2595674 |
+|    203 | Kyoto       | JPN         | Kyoto         |    1461974 |
+|    301 | London      | GBR         | England       |    8982000 |
+|    401 | New York    | USA         | New York      |    8008278 |
+|    402 | Los Angeles | USA         | California    |    3694820 |
+| 999999 | Sampleville | USA         | Test State    |      25000 |
+| 999998 | Tiny Town   | IND         | Test District |     100800 |
+|    106 | Nagpur      | IND         | Maharashtra   |    2505665 |
+|    107 | Hyderabad   | IND         | Telangana     |    6909970 |
+|    108 | Surat       | IND         | Gujarat       |    4567797 |
+|    204 | Yokohama    | JPN         | Kanagawa      |    3777491 |
+|    108 | Surat       | IND         | Gujarat       |    4567797 |
+|    204 | Yokohama    | JPN         | Kanagawa      |    3777491 |
+|    403 | Chicago     | USA         | Illinois      |    2746388 |
+|    302 | Manchester  | GBR         | England       |     552000 |
+|    303 | Indore      | IND         | Maharashtra   |       NULL |
++--------+-------------+-------------+---------------+------------+
+22 rows in set (0.00 sec)
+
+10.Increase the population of all Japanese cities by 10%.
+
+mysql> update city set Population = Population * 0.10 where countryCode = 'JPN';
+Query OK, 5 rows affected (0.01 sec)
+Rows matched: 5  Changed: 5  Warnings: 0
+
+mysql> select * from city;
++--------+-------------+-------------+---------------+------------+
+| ID     | name        | countryCode | District      | Population |
++--------+-------------+-------------+---------------+------------+
+|    101 | Mumbai      | IND         | Maharashtra   |   13100000 |
+|    102 | Delhi       | IND         | Delhi         |   11134555 |
+|    103 | Bengaluru   | IND         | Karnataka     |    8543675 |
+|    104 | Chennai     | IND         | Tamil Nadu    |    4746732 |
+|    105 | Pune        | IND         | Maharashtra   |    3600000 |
+|    201 | Tokyo       | JPN         | Tokyo-to      |     833660 |
+|    202 | Osaka       | JPN         | Osaka         |     259567 |
+|    203 | Kyoto       | JPN         | Kyoto         |     146197 |
+|    301 | London      | GBR         | England       |    8982000 |
+|    401 | New York    | USA         | New York      |    8008278 |
+|    402 | Los Angeles | USA         | California    |    3694820 |
+| 999999 | Sampleville | USA         | Test State    |      25000 |
+| 999998 | Tiny Town   | IND         | Test District |     100800 |
+|    106 | Nagpur      | IND         | Maharashtra   |    2505665 |
+|    107 | Hyderabad   | IND         | Telangana     |    6909970 |
+|    108 | Surat       | IND         | Gujarat       |    4567797 |
+|    204 | Yokohama    | JPN         | Kanagawa      |     377749 |
+|    108 | Surat       | IND         | Gujarat       |    4567797 |
+|    204 | Yokohama    | JPN         | Kanagawa      |     377749 |
+|    403 | Chicago     | USA         | Illinois      |    2746388 |
+|    302 | Manchester  | GBR         | England       |     552000 |
+|    303 | Indore      | IND         | Maharashtra   |       NULL |
++--------+-------------+-------------+---------------+------------+
+22 rows in set (0.00 sec)
+
+11.Change the name of Delhi to New Delhi and its population to 12000000 using a single statement.
+
+mysql> update city set Population = 12000000 , name = 'New Delhi' where ID = 102;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from city;
++--------+-------------+-------------+---------------+------------+
+| ID     | name        | countryCode | District      | Population |
++--------+-------------+-------------+---------------+------------+
+|    101 | Mumbai      | IND         | Maharashtra   |   13100000 |
+|    102 | New Delhi   | IND         | Delhi         |   12000000 |
+|    103 | Bengaluru   | IND         | Karnataka     |    8543675 |
+|    104 | Chennai     | IND         | Tamil Nadu    |    4746732 |
+|    105 | Pune        | IND         | Maharashtra   |    3600000 |
+|    201 | Tokyo       | JPN         | Tokyo-to      |     833660 |
+|    202 | Osaka       | JPN         | Osaka         |     259567 |
+|    203 | Kyoto       | JPN         | Kyoto         |     146197 |
+|    301 | London      | GBR         | England       |    8982000 |
+
+12.Decrease the population of all cities belonging to Maharashtra by 5%.
+
+mysql> update city set Population = Population - (Population * 0.05) where District = 'Maharashtra';
+Query OK, 3 rows affected (0.01 sec)
+Rows matched: 4  Changed: 3  Warnings: 0
+
+mysql> select * from city;
++--------+-------------+-------------+---------------+------------+
+| ID     | name        | countryCode | District      | Population |
++--------+-------------+-------------+---------------+------------+
+|    101 | Mumbai      | IND         | Maharashtra   |   12445000 |
+|    102 | New Delhi   | IND         | Delhi         |   12000000 |
+|    103 | Bengaluru   | IND         | Karnataka     |    8543675 |
+|    104 | Chennai     | IND         | Tamil Nadu    |    4746732 |
+|    105 | Pune        | IND         | Maharashtra   |    3420000 |
+|    201 | Tokyo       | JPN         | Tokyo-to      |     833660 |
+|    202 | Osaka       | JPN         | Osaka         |     259567 |
+|    203 | Kyoto       | JPN         | Kyoto         |     146197 |
+|    301 | London      | GBR         | England       |    8982000 |
+|    401 | New York    | USA         | New York      |    8008278 |
+|    402 | Los Angeles | USA         | California    |    3694820 |
+| 999999 | Sampleville | USA         | Test State    |      25000 |
+| 999998 | Tiny Town   | IND         | Test District |     100800 |
+|    106 | Nagpur      | IND         | Maharashtra   |    2380382 |
+|    107 | Hyderabad   | IND         | Telangana     |    6909970 |
+|    108 | Surat       | IND         | Gujarat       |    4567797 |
+|    204 | Yokohama    | JPN         | Kanagawa      |     377749 |
+|    108 | Surat       | IND         | Gujarat       |    4567797 |
+|    204 | Yokohama    | JPN         | Kanagawa      |     377749 |
+|    403 | Chicago     | USA         | Illinois      |    2746388 |
+|    302 | Manchester  | GBR         | England       |     552000 |
+|    303 | Indore      | IND         | Maharashtra   |       NULL |
++--------+-------------+-------------+---------------+------------+
+22 rows in set (0.00 sec)
+
+13.Change the country code from GBR to UK.
+
+mysql> update city set countryCode = 'UK' where countryCode = 'GBR';
+Query OK, 2 rows affected (0.01 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> select * from city;
++--------+-------------+-------------+---------------+------------+
+| ID     | name        | countryCode | District      | Population |
++--------+-------------+-------------+---------------+------------+
+|    101 | Mumbai      | IND         | Maharashtra   |   12445000 |
+|    102 | New Delhi   | IND         | Delhi         |   12000000 |
+|    103 | Bengaluru   | IND         | Karnataka     |    8543675 |
+|    104 | Chennai     | IND         | Tamil Nadu    |    4746732 |
+|    105 | Pune        | IND         | Maharashtra   |    3420000 |
+|    201 | Tokyo       | JPN         | Tokyo-to      |     833660 |
+|    202 | Osaka       | JPN         | Osaka         |     259567 |
+|    203 | Kyoto       | JPN         | Kyoto         |     146197 |
+|    301 | London      | UK          | England       |    8982000 |
+|    401 | New York    | USA         | New York      |    8008278 |
+|    402 | Los Angeles | USA         | California    |    3694820 |
+| 999999 | Sampleville | USA         | Test State    |      25000 |
+| 999998 | Tiny Town   | IND         | Test District |     100800 |
+|    106 | Nagpur      | IND         | Maharashtra   |    2380382 |
+|    107 | Hyderabad   | IND         | Telangana     |    6909970 |
+|    108 | Surat       | IND         | Gujarat       |    4567797 |
+|    204 | Yokohama    | JPN         | Kanagawa      |     377749 |
+|    108 | Surat       | IND         | Gujarat       |    4567797 |
+|    204 | Yokohama    | JPN         | Kanagawa      |     377749 |
+|    403 | Chicago     | USA         | Illinois      |    2746388 |
+|    302 | Manchester  | UK          | England       |     552000 |
+|    303 | Indore      | IND         | Maharashtra   |       NULL |
++--------+-------------+-------------+---------------+------------+
+22 rows in set (0.00 sec)
+
+14.Delete the city having ID 203.
+
+mysql> delete from city where ID = 203;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from city;
++--------+-------------+-------------+---------------+------------+
+| ID     | name        | countryCode | District      | Population |
++--------+-------------+-------------+---------------+------------+
+|    101 | Mumbai      | IND         | Maharashtra   |   12445000 |
+|    102 | New Delhi   | IND         | Delhi         |   12000000 |
+|    103 | Bengaluru   | IND         | Karnataka     |    8543675 |
+|    104 | Chennai     | IND         | Tamil Nadu    |    4746732 |
+|    105 | Pune        | IND         | Maharashtra   |    3420000 |
+|    201 | Tokyo       | JPN         | Tokyo-to      |     833660 |
+|    202 | Osaka       | JPN         | Osaka         |     259567 |
+|    301 | London      | UK          | England       |    8982000 |
+|    401 | New York    | USA         | New York      |    8008278 |
+|    402 | Los Angeles | USA         | California    |    3694820 |
+| 999999 | Sampleville | USA         | Test State    |      25000 |
+| 999998 | Tiny Town   | IND         | Test District |     100800 |
+|    106 | Nagpur      | IND         | Maharashtra   |    2380382 |
+|    107 | Hyderabad   | IND         | Telangana     |    6909970 |
+|    108 | Surat       | IND         | Gujarat       |    4567797 |
+|    204 | Yokohama    | JPN         | Kanagawa      |     377749 |
+|    108 | Surat       | IND         | Gujarat       |    4567797 |
+|    204 | Yokohama    | JPN         | Kanagawa      |     377749 |
+|    403 | Chicago     | USA         | Illinois      |    2746388 |
+|    302 | Manchester  | UK          | England       |     552000 |
+|    303 | Indore      | IND         | Maharashtra   |       NULL |
++--------+-------------+-------------+---------------+------------+
+21 rows in set (0.00 sec)
+
+15.Delete the record of Chennai using its name.
+mysql> delete from city where name = 'Chennai';
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from city;
++--------+-------------+-------------+---------------+------------+
+| ID     | name        | countryCode | District      | Population |
++--------+-------------+-------------+---------------+------------+
+|    101 | Mumbai      | IND         | Maharashtra   |   12445000 |
+|    102 | New Delhi   | IND         | Delhi         |   12000000 |
+|    103 | Bengaluru   | IND         | Karnataka     |    8543675 |
+|    105 | Pune        | IND         | Maharashtra   |    3420000 |
+|    201 | Tokyo       | JPN         | Tokyo-to      |     833660 |
+|    202 | Osaka       | JPN         | Osaka         |     259567 |
+|    301 | London      | UK          | England       |    8982000 |
+|    401 | New York    | USA         | New York      |    8008278 |
+|    402 | Los Angeles | USA         | California    |    3694820 |
+| 999999 | Sampleville | USA         | Test State    |      25000 |
+| 999998 | Tiny Town   | IND         | Test District |     100800 |
+|    106 | Nagpur      | IND         | Maharashtra   |    2380382 |
+|    107 | Hyderabad   | IND         | Telangana     |    6909970 |
+|    108 | Surat       | IND         | Gujarat       |    4567797 |
+|    204 | Yokohama    | JPN         | Kanagawa      |     377749 |
+|    108 | Surat       | IND         | Gujarat       |    4567797 |
+|    204 | Yokohama    | JPN         | Kanagawa      |     377749 |
+|    403 | Chicago     | USA         | Illinois      |    2746388 |
+|    302 | Manchester  | UK          | England       |     552000 |
+|    303 | Indore      | IND         | Maharashtra   |       NULL |
++--------+-------------+-------------+---------------+------------+
+20 rows in set (0.00 sec)
+
+16.Delete all cities belonging to Japan.
+
+mysql> delete from city where countryCode = 'JPN';
+Query OK, 4 rows affected (0.01 sec)
+
+mysql> select * from city;
++--------+-------------+-------------+---------------+------------+
+| ID     | name        | countryCode | District      | Population |
++--------+-------------+-------------+---------------+------------+
+|    101 | Mumbai      | IND         | Maharashtra   |   12445000 |
+|    102 | New Delhi   | IND         | Delhi         |   12000000 |
+|    103 | Bengaluru   | IND         | Karnataka     |    8543675 |
+|    105 | Pune        | IND         | Maharashtra   |    3420000 |
+|    301 | London      | UK          | England       |    8982000 |
+|    401 | New York    | USA         | New York      |    8008278 |
+|    402 | Los Angeles | USA         | California    |    3694820 |
+| 999999 | Sampleville | USA         | Test State    |      25000 |
+| 999998 | Tiny Town   | IND         | Test District |     100800 |
+|    106 | Nagpur      | IND         | Maharashtra   |    2380382 |
+|    107 | Hyderabad   | IND         | Telangana     |    6909970 |
+|    108 | Surat       | IND         | Gujarat       |    4567797 |
+|    108 | Surat       | IND         | Gujarat       |    4567797 |
+|    403 | Chicago     | USA         | Illinois      |    2746388 |
+|    302 | Manchester  | UK          | England       |     552000 |
+|    303 | Indore      | IND         | Maharashtra   |       NULL |
++--------+-------------+-------------+---------------+------------+
+16 rows in set (0.00 sec)
+
+17.Delete all cities having a population less than 3000000.
+
+mysql> delete from city where Population <= 3000000;
+Query OK, 5 rows affected (0.01 sec)
+
+mysql> select * from city;
++------+-------------+-------------+-------------+------------+
+| ID   | name        | countryCode | District    | Population |
++------+-------------+-------------+-------------+------------+
+|  101 | Mumbai      | IND         | Maharashtra |   12445000 |
+|  102 | New Delhi   | IND         | Delhi       |   12000000 |
+|  103 | Bengaluru   | IND         | Karnataka   |    8543675 |
+|  105 | Pune        | IND         | Maharashtra |    3420000 |
+|  301 | London      | UK          | England     |    8982000 |
+|  401 | New York    | USA         | New York    |    8008278 |
+|  402 | Los Angeles | USA         | California  |    3694820 |
+|  107 | Hyderabad   | IND         | Telangana   |    6909970 |
+|  108 | Surat       | IND         | Gujarat     |    4567797 |
+|  108 | Surat       | IND         | Gujarat     |    4567797 |
+|  303 | Indore      | IND         | Maharashtra |       NULL |
++------+-------------+-------------+-------------+------------+
+11 rows in set (0.00 sec)
+
+18.Delete cities belonging to the USA whose population is greater than 5000000.
+
+mysql> delete from city where Population >= 5000000;
+Query OK, 6 rows affected (0.00 sec)
+
+mysql> select * from city;
++------+-------------+-------------+-------------+------------+
+| ID   | name        | countryCode | District    | Population |
++------+-------------+-------------+-------------+------------+
+|  105 | Pune        | IND         | Maharashtra |    3420000 |
+|  402 | Los Angeles | USA         | California  |    3694820 |
+|  108 | Surat       | IND         | Gujarat     |    4567797 |
+|  108 | Surat       | IND         | Gujarat     |    4567797 |
+|  303 | Indore      | IND         | Maharashtra |       NULL |
++------+-------------+-------------+-------------+------------+
+5 rows in set (0.00 sec)
+
+19.Delete Mumbai and Pune using a single DELETE statement.
+mysql> delete from city where name IN('Mumbai','Pune');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from city;
++------+-------------+-------------+-------------+------------+
+| ID   | name        | countryCode | District    | Population |
++------+-------------+-------------+-------------+------------+
+|  402 | Los Angeles | USA         | California  |    3694820 |
+|  108 | Surat       | IND         | Gujarat     |    4567797 |
+|  108 | Surat       | IND         | Gujarat     |    4567797 |
+|  303 | Indore      | IND         | Maharashtra |       NULL |
++------+-------------+-------------+-------------+------------+
+4 rows in set (0.00 sec)
+
+20.Delete all records from the city table without removing its structure using DELETE.
+mysql> delete from city;
+Query OK, 4 rows affected (0.01 sec)
+
+mysql> desc city;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| ID          | int          | YES  |     | NULL    |       |
+| name        | varchar(100) | YES  |     | NULL    |       |
+| countryCode | varchar(100) | YES  |     | NULL    |       |
+| District    | varchar(100) | YES  |     | NULL    |       |
+| Population  | int          | YES  |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+5 rows in set (0.03 sec)
+
+
+
+
+
+
+
